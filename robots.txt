@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omgserviteca.com/sitemap.xml
