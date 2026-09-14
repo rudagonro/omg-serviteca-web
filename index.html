@@ -342,6 +342,11 @@ body{background:var(--black);color:var(--white);font-family:var(--fn-b);overflow
 .fta{min-height:110px;resize:vertical}
 .fsel option{background:var(--black3)}
 .fi::placeholder,.fta::placeholder{color:rgba(255,255,255,.25);font-style:italic}
+.consent{display:flex;align-items:flex-start;gap:.65rem;margin:.25rem 0 1rem;
+  font-family:var(--fn-t);font-size:.72rem;line-height:1.5;color:rgba(255,255,255,.6)}
+.consent input{margin-top:.2rem;accent-color:var(--gold);width:16px;height:16px;flex:0 0 auto}
+.consent a,.legal-links a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.field-error{display:none;color:#ff8b8b;font-family:var(--fn-t);font-size:.7rem;margin:-.5rem 0 .8rem}
 
 /* CTA BANNER */
 .cta-ban{background:linear-gradient(135deg,var(--black3) 0%,#1a1500 100%);
@@ -388,6 +393,22 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;}
 .ft-copy{font-family:var(--fn-t);font-size:.72rem;color:rgba(255,255,255,.28)}
 .ft-copy strong{color:var(--gold)}
+.legal-links{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--fn-t);font-size:.72rem}
+.simple-footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.12);
+  padding:1rem 1.5rem;text-align:center;font-family:var(--fn-t);font-size:.72rem;
+  color:rgba(255,255,255,.45);margin-top:2rem}
+.simple-footer .legal-links{justify-content:center;margin-top:.55rem}
+.cookie-banner{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:12000;
+  max-width:780px;margin:auto;background:#171717;border:1px solid rgba(245,197,24,.35);
+  border-radius:10px;padding:1rem 1.1rem;box-shadow:0 12px 45px rgba(0,0,0,.72);display:none}
+.cookie-banner.show{display:block}.cookie-inner{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+.cookie-copy{font-family:var(--fn-t);font-size:.76rem;line-height:1.55;color:rgba(255,255,255,.75)}
+.cookie-copy strong{color:var(--white)}.cookie-copy a{color:var(--gold)}
+.cookie-actions{display:flex;gap:.55rem;flex:0 0 auto}
+.cookie-btn{border-radius:6px;padding:.6rem .85rem;font-family:var(--fn-b);font-weight:700;
+  cursor:pointer;border:1px solid var(--gold);font-size:.78rem}
+.cookie-accept{background:var(--gold);color:#000}.cookie-reject{background:transparent;color:var(--gold)}
+@media(max-width:700px){.cookie-inner{align-items:stretch;flex-direction:column}.cookie-actions{width:100%}.cookie-btn{flex:1}}
 
 /* OSCAR WIDGET */
 /* OSCAR — floating image, no circle, no border */
@@ -593,6 +614,8 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
           <div class="fg"><label class="fl">Vehículo</label><input type="text" class="fi" id="revVehiculo" placeholder="Ej: Toyota Hilux 2020"></div>
         </div>
         <div class="fg" style="margin-bottom:1rem"><label class="fl">Tu Opinión</label><textarea class="fta" id="revTexto" rows="3" placeholder="Cuéntanos tu experiencia con OMG Serviteca..."></textarea></div>
+        <label class="consent"><input type="checkbox" id="revConsent"><span>Autorizo el tratamiento de estos datos para gestionar y, previa revisión, publicar mi reseña, conforme a la <a href="/politica-privacidad.html" target="_blank">Política de Privacidad y Tratamiento de Datos</a>.</span></label>
+        <div class="field-error" id="revConsentError">Debes autorizar el tratamiento de los datos para enviar la opinión.</div>
         <button class="btn-g" style="width:100%;justify-content:center" onclick="submitReview()">📤 Enviar Opinión</button>
         <p style="font-family:var(--fn-t);font-size:.68rem;color:var(--gray);text-align:center;margin-top:.8rem;font-style:italic;">Tu opinión será revisada antes de publicarse. Gracias por confiar en OMG Serviteca.</p>
       </div>
@@ -693,7 +716,8 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
         </div>
       </div>
       <div class="ft-bot">
-        <div class="ft-copy">© 2025 <strong>OMG Serviteca</strong>. Todos los derechos reservados.</div>
+        <div class="ft-copy">© 2026 <strong>OMG Serviteca</strong>. Todos los derechos reservados.</div>
+        <div class="legal-links" aria-label="Información legal"><a href="/politica-privacidad.html">Privacidad y datos</a><a href="/politica-cookies.html">Cookies</a><a href="/terminos-condiciones.html">Términos y condiciones</a></div>
         <div class="ft-copy">Chía, Cundinamarca, Colombia</div>
       </div>
     </div>
@@ -713,10 +737,9 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
   <div class="blog-body"><div class="blog-grid" id="blogGrid"></div></div>
 
   <!-- Footer bar -->
-  <div style="background:var(--black2);border-top:1px solid rgba(245,197,24,.12);
-    padding:1rem 1.5rem;text-align:center;
-    font-family:var(--fn-t);font-size:.72rem;color:rgba(255,255,255,.28);margin-top:2rem;">
-    © 2025 <strong style="color:var(--gold)">OMG Serviteca</strong> · Todos los derechos reservados · Chía, Cundinamarca
+  <div class="simple-footer">
+    © 2026 <strong style="color:var(--gold)">OMG Serviteca</strong> · Todos los derechos reservados · Chía, Cundinamarca
+    <div class="legal-links"><a href="/politica-privacidad.html">Privacidad y datos</a><a href="/politica-cookies.html">Cookies</a><a href="/terminos-condiciones.html">Términos y condiciones</a></div>
   </div>
 </div>
 
@@ -763,6 +786,8 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
             </select>
           </div>
           <div class="fg"><label class="fl">Cuéntanos qué necesita tu vehículo</label><textarea class="fta" id="ctMsg" placeholder="Cuéntanos qué necesita tu vehículo..."></textarea></div>
+          <label class="consent"><input type="checkbox" id="ctConsent"><span>Autorizo el tratamiento de mis datos para atender esta solicitud y contactarme por teléfono o WhatsApp, conforme a la <a href="/politica-privacidad.html" target="_blank">Política de Privacidad y Tratamiento de Datos</a>.</span></label>
+          <div class="field-error" id="ctConsentError">Debes autorizar el tratamiento de los datos para continuar.</div>
           <button class="btn-g" style="width:100%;justify-content:center" onclick="sendWA()">📅 Agendar Vía WhatsApp →</button>
         </div>
       </div>
@@ -770,10 +795,16 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
   </div>
 
   <!-- Footer bar -->
-  <div style="background:var(--black2);border-top:1px solid rgba(245,197,24,.12);
-    padding:1rem 1.5rem;text-align:center;
-    font-family:var(--fn-t);font-size:.72rem;color:rgba(255,255,255,.28);margin-top:2rem;">
-    © 2025 <strong style="color:var(--gold)">OMG Serviteca</strong> · Todos los derechos reservados · Chía, Cundinamarca
+  <div class="simple-footer">
+    © 2026 <strong style="color:var(--gold)">OMG Serviteca</strong> · Todos los derechos reservados · Chía, Cundinamarca
+    <div class="legal-links"><a href="/politica-privacidad.html">Privacidad y datos</a><a href="/politica-cookies.html">Cookies</a><a href="/terminos-condiciones.html">Términos y condiciones</a></div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferencias de analítica">
+  <div class="cookie-inner">
+    <div class="cookie-copy"><strong>Tu privacidad importa.</strong> Podemos usar analítica de rendimiento de Cloudflare, sin publicidad ni perfiles comerciales. Puedes aceptarla o rechazarla; el sitio funciona igual. <a href="/politica-cookies.html">Más información</a>.</div>
+    <div class="cookie-actions"><button class="cookie-btn cookie-reject" onclick="setAnalyticsConsent(false)">Rechazar</button><button class="cookie-btn cookie-accept" onclick="setAnalyticsConsent(true)">Aceptar</button></div>
   </div>
 </div>
 
@@ -1149,7 +1180,32 @@ function sendWA(){
   const v=document.getElementById('ctVehiculo').value||'';
   const s=document.getElementById('ctServicio').value||'';
   const m=document.getElementById('ctMsg').value||'';
-  window.open(`https://wa.me/573176980609?text=Hola%20OMG%20Serviteca,%20quiero%20agendar%20una%20cita.%0ANombre:%20${encodeURIComponent(n)}%0ACelular:%20${encodeURIComponent(c)}%0AVehículo:%20${encodeURIComponent(v)}%0AServicio:%20${encodeURIComponent(s)}%0AMensaje:%20${encodeURIComponent(m)}`,'_blank');
+  const consent=document.getElementById('ctConsent');
+  const err=document.getElementById('ctConsentError');
+  if(!consent.checked){err.style.display='block';consent.focus();return}
+  err.style.display='none';
+  window.open(`https://wa.me/573176980609?text=Hola%20OMG%20Serviteca,%20quiero%20agendar%20una%20cita.%0ANombre:%20${encodeURIComponent(n)}%0ACelular:%20${encodeURIComponent(c)}%0AVehículo:%20${encodeURIComponent(v)}%0AServicio:%20${encodeURIComponent(s)}%0AMensaje:%20${encodeURIComponent(m)}%0A%0AAutorizo%20el%20tratamiento%20de%20estos%20datos%20para%20atender%20mi%20solicitud.`,'_blank');
+}
+
+// Analítica opcional: se carga únicamente después de la aceptación.
+const ANALYTICS_KEY='omg_analytics_consent';
+function loadCloudflareAnalytics(){
+  if(document.querySelector('script[data-omg-analytics]'))return;
+  const script=document.createElement('script');
+  script.defer=true;script.dataset.omgAnalytics='true';
+  script.src='https://static.cloudflareinsights.com/beacon.min.js';
+  script.setAttribute('data-cf-beacon','{"token":"2a48d7ccd8df4e6f8289f97768924913","spa":true}');
+  document.body.appendChild(script);
+}
+function setAnalyticsConsent(accepted){
+  localStorage.setItem(ANALYTICS_KEY,accepted?'accepted':'rejected');
+  document.getElementById('cookieBanner').classList.remove('show');
+  if(accepted)loadCloudflareAnalytics();
+}
+function initAnalyticsConsent(){
+  const choice=localStorage.getItem(ANALYTICS_KEY);
+  if(choice==='accepted')loadCloudflareAnalytics();
+  else if(choice!=='rejected')document.getElementById('cookieBanner').classList.add('show');
 }
 
 // ══════════════════════════════
@@ -1157,6 +1213,7 @@ function sendWA(){
 // ══════════════════════════════
 document.addEventListener('DOMContentLoaded',()=>{
   renderSvc();renderBen();renderRev();renderAboutVals();
+  initAnalyticsConsent();
 });
 // ── REVIEW FORM ──
 let selectedStars = 5;
@@ -1174,8 +1231,12 @@ function submitReview(){
     alert('Por favor completa tu nombre y tu opinión.');
     return;
   }
+  const consent=document.getElementById('revConsent');
+  const consentError=document.getElementById('revConsentError');
+  if(!consent.checked){consentError.style.display='block';consent.focus();return}
+  consentError.style.display='none';
   // Send via WhatsApp
-  const msg = `Nueva reseña OMG Serviteca:%0AEstrellas: ${'★'.repeat(selectedStars)}%0ANombre: ${encodeURIComponent(nombre)}%0AVehículo: ${encodeURIComponent(vehiculo||'No especificado')}%0AOpinión: ${encodeURIComponent(texto)}`;
+  const msg = `Nueva reseña OMG Serviteca:%0AEstrellas: ${'★'.repeat(selectedStars)}%0ANombre: ${encodeURIComponent(nombre)}%0AVehículo: ${encodeURIComponent(vehiculo||'No especificado')}%0AOpinión: ${encodeURIComponent(texto)}%0A%0AAutorizo el tratamiento y la publicación de estos datos conforme a la política de privacidad.`;
   window.open(`https://wa.me/573176980609?text=${msg}`,'_blank');
   document.getElementById('revFormWrap').style.display='none';
   const submitted = document.getElementById('revSubmitted');

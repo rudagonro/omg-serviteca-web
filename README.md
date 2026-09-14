@@ -17,3 +17,13 @@ El sitio no requiere proceso de compilación: CSS y JavaScript están incrustado
 - Directorio de salida: `.`
 
 Antes de publicar, revisar dirección, horarios, teléfono y enlaces reales de redes sociales.
+
+## Cumplimiento y privacidad
+
+- `politica-privacidad.html`: política de privacidad y tratamiento de datos.
+- `politica-cookies.html`: preferencias de almacenamiento local y analítica opcional.
+- `terminos-condiciones.html`: condiciones de cotización, reparación, garantía y entrega.
+- `_headers`: evita que Cloudflare inyecte analítica antes del consentimiento y conserva caché prolongada para imágenes.
+- `IMAGENES-Y-LICENCIAS.md`: auditoría y registro pendiente de procedencia de imágenes.
+
+El banner carga Cloudflare Web Analytics únicamente después de la aceptación. No hay Google Analytics ni Meta Pixel en el código.
