@@ -10,7 +10,7 @@ Respaldo recuperado del despliegue público de Netlify y preparado para versiona
 
 El sitio no requiere proceso de compilación: CSS y JavaScript están incrustados en `index.html`, y las imágenes viven como archivos sueltos en `images/`. La única dependencia externa de presentación es Google Fonts; los enlaces de contacto abren WhatsApp o llamadas telefónicas.
 
-## Publicación en Cloudflare Pages
+## Publicación del sitio
 
 - Rama de producción: `main`
 - Comando de compilación: `exit 0` (o vacío)
@@ -23,7 +23,7 @@ Antes de publicar, revisar dirección, horarios, teléfono y enlaces reales de r
 - `politica-privacidad.html`: política de privacidad y tratamiento de datos.
 - `politica-cookies.html`: preferencias de almacenamiento local y analítica opcional.
 - `terminos-condiciones.html`: condiciones de cotización, reparación, garantía y entrega.
-- `_headers`: evita que Cloudflare inyecte analítica antes del consentimiento y conserva caché prolongada para imágenes.
+- `_headers`: evita la inserción automática de analítica antes del consentimiento y conserva caché prolongada para imágenes.
 - `IMAGENES-Y-LICENCIAS.md`: auditoría y registro pendiente de procedencia de imágenes.
 
-El banner carga Cloudflare Web Analytics únicamente después de la aceptación. No hay Google Analytics ni Meta Pixel en el código.
+El banner carga la medición técnica únicamente después de la aceptación. No se utilizan herramientas de publicidad ni creación de perfiles comerciales.
