@@ -24,9 +24,9 @@ Este archivo mantiene continuidad entre Codex, Claude Code y futuras sesiones.
 - [ ] Revisar SEO, accesibilidad y rendimiento.
 - [ ] Ejecutar QA final.
 - [ ] Registrar build, pruebas, commit y estado final.
-- [ ] Auditar procedencia y licencia de las imágenes `img-01` a `img-16`, los logos y el personaje Oscar (ver `IMAGENES-Y-LICENCIAS.md`). Reemplazar por material propio o con licencia verificable donde no haya evidencia.
-- [ ] Reclamar la ficha de Google Business Profile ("Serviteca OMG") y, una vez verificada: corregir el nombre a "OMG Serviteca", la dirección (la ficha muestra 17-57, incorrecta) y enlazar `https://omgserviteca.com`.
-- [ ] Conseguir y publicar los perfiles reales de Facebook, Instagram y TikTok del negocio (se retiraron placeholders genéricos del footer).
+- [x] Auditar procedencia y licencia de las imágenes `img-01` a `img-16`, los logos y el personaje Oscar. Resuelto 2026-09-22: son generadas con IA a partir de tomas reales del negocio, propiedad de OMG Serviteca. No aplica licencia de terceros. Ver `IMAGENES-Y-LICENCIAS.md`.
+- [ ] Reclamar la ficha de Google Business Profile ("Serviteca OMG") y, una vez verificada: corregir el nombre a "OMG Serviteca", la dirección (la ficha muestra 17-57, incorrecta) y enlazar `https://omgserviteca.com`. Sin arrancar aún.
+- [ ] Conseguir y publicar los perfiles reales de Facebook, Instagram y TikTok del negocio (se retiraron placeholders genéricos del footer). Sin arrancar aún.
 
 ## Decisiones confirmadas
 
@@ -46,7 +46,7 @@ Codex y Claude Code pueden alternarse. Cada agente debe sincronizar el repositor
 - **Redirects/SEO técnico**: regla 301 `www` → raíz (preserva query string), `<link rel="canonical">` a `https://omgserviteca.com/`, `robots.txt` y `sitemap.xml` (4 URLs: home + 3 páginas legales) en la raíz, `_headers` con cache rules.
 - **Favicon / previews**: `favicon.ico` + variantes PNG, `apple-touch-icon`, y `images/og-image.jpg` (1200×630) para que WhatsApp y redes muestren vista previa con logo.
 - **Contacto**: correo `omgtres@hotmail.com` visible en footer y en Contáctanos (enlace `mailto:`).
-- **Imágenes**: las 16 fotos del taller viven en `images/` (extraídas de los `<img>` en base64 del HTML original) y ya están recomprimidas (JPG calidad 65 + PNG optimizado, ~13% menos peso). Pendiente sin resolver: licencia/procedencia (ver tarea arriba).
+- **Imágenes**: las 16 fotos del taller viven en `images/` (extraídas de los `<img>` en base64 del HTML original) y ya están recomprimidas (JPG calidad 65 + PNG optimizado, ~13% menos peso). Licencia/procedencia resuelta: generadas con IA a partir de tomas reales, propiedad de OMG Serviteca (ver `IMAGENES-Y-LICENCIAS.md`).
 - **Google Search Console**: propiedad de dominio `sc-domain:omgserviteca.com` verificada por TXT en DNS. Sitemap enviado y en estado "Correcto". Al 17-sep-2026: 2 de 4 páginas indexadas (home y `politica-cookies`); `politica-privacidad` y `terminos-condiciones` aún no. Hay una tarea programada local (`check-omgserviteca-full-indexing`, diaria) que revisa el avance automáticamente.
 - **Google Maps / Business Profile**: existe una ficha real "Serviteca OMG" (3.8★, 17 reseñas) sin reclamar, sin sitio web enlazado, y con la dirección mal escrita (17-57). El sitio ya enlaza hacia esa ficha (footer, Contacto, y `hasMap`/`sameAs` en el JSON-LD de schema.org) para reforzar la señal, a la espera de que se reclame formalmente.
 - **Redes sociales**: se quitaron del footer los botones de Facebook/Instagram/TikTok porque apuntaban a las páginas genéricas de esas plataformas, no a perfiles reales del negocio. No agregarlos de nuevo sin URLs reales confirmadas.
