@@ -675,6 +675,21 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
     </div>
   </div>
 
+  <!-- BLOG PREVIEW -->
+  <section id="blog-preview-sec" class="sec">
+    <div class="sec-in">
+      <div class="sec-hd">
+        <div class="sec-tag">Contenido Automotriz</div>
+        <h2 class="sec-ttl">ÚLTIMOS <span class="ac">ARTÍCULOS</span></h2>
+        <div class="sec-div"><span>📖</span></div>
+      </div>
+      <div class="blog-grid" id="blogPreviewGrid"></div>
+      <div style="text-align:center;margin-top:2.2rem">
+        <button class="btn-o" onclick="navGo('blog')">Ver todos los artículos →</button>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="ft-in">
@@ -1054,6 +1069,27 @@ function renderBlog(filter='all'){
     fe.innerHTML=cats.map(c=>`<button class="fb${c==='all'?' active':''}" onclick="filterBlog('${c}',this)">${c==='all'?'Todos':c}</button>`).join('');
   }
 }
+function renderBlogPreview(){
+  const g=document.getElementById('blogPreviewGrid');if(!g)return;
+  g.innerHTML=blogData.slice(0,3).map(a=>`
+    <div class="blog-card" onclick="openArticle('${a.id}')">
+      <div class="blog-img">
+        <span style="position:relative;z-index:1">${a.em}</span>
+        <div class="blog-img-ov"></div>
+        <span class="blog-cat">${a.cat}</span>
+      </div>
+      <div class="blog-bd">
+        <div class="blog-meta"><span>📅 ${a.date}</span><span>✍ OMG Serviteca</span></div>
+        <div class="blog-ttl">${a.ttl}</div>
+        <p class="blog-ex">${a.exc}</p>
+        <div class="blog-foot">
+          <span class="blog-auth">OMG Serviteca</span>
+          <button class="blog-rd">Leer más ›</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
 function filterBlog(cat,btn){
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -1097,7 +1133,7 @@ function showView(name){
   window.scrollTo({top:0,behavior:'smooth'});
   document.querySelectorAll('[data-v]').forEach(a=>a.classList.toggle('active',a.dataset.v===name));
   if(name==='blog')renderBlog();
-  if(name==='home'){renderSvc();renderBen();renderRev();renderAboutVals();}
+  if(name==='home'){renderSvc();renderBen();renderRev();renderAboutVals();renderBlogPreview();}
 }
 function navGo(view,section){
   showView(view);
@@ -1246,7 +1282,7 @@ function initAnalyticsConsent(){
 // INIT
 // ══════════════════════════════
 document.addEventListener('DOMContentLoaded',()=>{
-  renderSvc();renderBen();renderRev();renderAboutVals();
+  renderSvc();renderBen();renderRev();renderAboutVals();renderBlogPreview();
   initAnalyticsConsent();
 });
 // ── REVIEW FORM ──

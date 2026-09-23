@@ -12,7 +12,7 @@ Este archivo mantiene continuidad entre Codex, Claude Code y futuras sesiones.
 
 - [x] Auditar técnicamente el Home actual antes de modificarlo. Ver `docs/AUDITORIA_HOME.md`.
 - [x] Mapear secciones actuales contra la nueva arquitectura UX. Ver `docs/AUDITORIA_HOME.md` §3.
-- [!] Reorganizar el Home según `OMG_UX_REDESIGN.md`. Bloqueado: falta que el usuario decida entre Opción A/B de `docs/AUDITORIA_HOME.md` §5 (Ubicación/Blog: ¿fusionar en el Home o mantener como vistas separadas con mejor acceso?).
+- [x] Reorganizar el Home según `OMG_UX_REDESIGN.md` (Ubicación/Blog). Decisión del usuario 2026-09-22: **Opción B** — Ubicación se queda en la vista Contacto (ya tiene mapa y "Cómo llegar", enlazada desde el CTA banner del Home); se agregó una vista previa de 3 artículos del Blog (`#blog-preview-sec`, `renderBlogPreview()`) antes del footer del Home, con botón "Ver todos los artículos" hacia la vista Blog completa.
 - [ ] Mejorar tarjetas de servicios y sus acciones.
 - [ ] Crear la sección “¿Qué le pasa a tu vehículo?”.
 - [ ] Integrar esa orientación con servicios, WhatsApp y OSCAR cuando aplique.
@@ -160,6 +160,37 @@ Pendientes:
 - Decisión de arquitectura (`docs/AUDITORIA_HOME.md` §5) para continuar con Ubicación/Blog.
 - Fase 4 (nueva sección "¿Qué le pasa a tu vehículo?"), Fase 5 (refinamiento visual), Fase 6 (QA final) siguen sin empezar.
 - Revisar convivencia OSCAR/WhatsApp y accesibilidad/SEO del sitio completo (no solo de los 3 cambios de esta sesión).
+
+Commit:
+Ver commit de esta sesión en `git log`.
+
+---
+
+### 2026-09-22, decisión de arquitectura resuelta + preview de Blog en el Home
+Agente: Claude Code
+
+Tarea:
+Cerrar la decisión pendiente de `docs/AUDITORIA_HOME.md` §5 (Ubicación/Blog) con el usuario e implementar lo que faltaba.
+
+Cambios:
+- El usuario decidió **Opción B**: Ubicación se queda en la vista Contacto (ya resuelto en la sesión anterior con mapa + "Cómo llegar"); Blog se resuelve con una vista previa ligera en el Home.
+- Nueva sección `#blog-preview-sec` en el Home (después del CTA banner, antes del footer): muestra los 3 artículos más recientes de `blogData` (`renderBlogPreview()`) con el mismo diseño de tarjeta que la vista Blog completa, y un botón "Ver todos los artículos" que navega a `view-blog`.
+- `docs/AUDITORIA_HOME.md` actualizado: §5 marcada como resuelta, tabla de §3 actualizada, nueva §6 con checklist de cambios de bajo riesgo (todos hechos) y §7 con los siguientes pasos reales del plan.
+
+Archivos:
+- `index.html`
+- `docs/AUDITORIA_HOME.md`
+
+Pruebas:
+- Servidor estático local: 3 tarjetas renderizadas con datos reales, clic en tarjeta abre el artículo correcto (`openArticle`), botón "Ver todos los artículos" navega a la vista Blog con los 6 artículos completos.
+- Sin errores de consola en la pestaña real (nota: la pestaña "snapshot" de este entorno de vista previa sí lanza un `SecurityError` de `localStorage` en URLs `data:` — es una limitación conocida de la herramienta, no del sitio).
+- Responsive 375px: sin overflow horizontal en la nueva sección.
+
+Resultado:
+Fase 3 completa en lo que respecta a Ubicación/Blog. El Home ahora sigue el recorrido del plan salvo por la sección "¿Qué le pasa a tu vehículo?" (Fase 4, sin empezar) y las tarjetas de servicio/OSCAR (revisión pendiente).
+
+Pendientes:
+Ver "Tareas actuales" — quedan: Fase 4, mejorar tarjetas de servicio, convivencia OSCAR/WhatsApp, Fase 5 y 6, reclamo de Google Business Profile, redes sociales reales.
 
 Commit:
 Ver commit de esta sesión en `git log`.

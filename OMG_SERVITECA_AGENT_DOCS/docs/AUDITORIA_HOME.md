@@ -37,9 +37,9 @@ Fuera del Home:
 | Por qué elegir OMG | Existe (`benefits-sec`), en la posición correcta. |
 | Opiniones de clientes | Existe, pero mezclada con el formulario de reseñas (ver hallazgo below). |
 | Sobre OMG | Existe, en la posición correcta. |
-| CTA de agendamiento | Existe como banner, pero sin "Agendar cita" como acción propia ni "Cómo llegar". |
-| Ubicación, horarios y mapa | **Vive en una vista separada (`Contacto`), no en el Home.** No hay mapa embebido, solo un link de texto. |
-| Blog | **Vive en una vista separada, no en el Home.** |
+| CTA de agendamiento | ✅ Resuelto: "Agendar Cita" como acción propia + "Cómo llegar" en el banner. |
+| Ubicación, horarios y mapa | ✅ Resuelto (Opción B, ver §5): mapa embebido + "Cómo llegar" en Contacto; Home enlaza ahí. |
+| Blog | ✅ Resuelto (Opción A ligera, ver §5): preview de 3 artículos en el Home + link a la vista completa. |
 | Footer | Existe. |
 
 ## 4. Hallazgos
@@ -51,19 +51,29 @@ Fuera del Home:
 5. **Nuevo hallazgo**: no existe una acción "Agendar cita" independiente en el Home — todo el agendamiento actual pasa por WhatsApp directo (Hero, CTA banner) o por el formulario completo que solo vive en la vista Contacto. El plan pide que "Agendar cita" tenga la mayor jerarquía como su propia acción.
 6. Los datos de contacto (dirección, teléfono, correo, WhatsApp, horario) son consistentes entre Footer y vista Contacto — no hay discrepancias que corregir ahí.
 
-## 5. Decisión pendiente antes de la Fase 3 (reorganización estructural)
+## 5. Decisión de arquitectura — RESUELTA (2026-09-22)
 
-Hay dos caminos válidos y NO es una decisión técnica sino de producto — la dejo para el usuario:
+Había dos caminos válidos, no era una decisión técnica sino de producto:
 
-**Opción A — Fusionar en el Home.** Traer una versión resumida de Ubicación (mapa + horario + "Cómo llegar") y una vista previa de 2-3 artículos del Blog dentro del scroll del Home, antes del Footer, tal como lo describe el plan literalmente. El botón "Blog" del menú pasaría a ser un anclaje al Home en vez de una vista aparte (o se mantiene la vista completa del Blog para "ver todos los artículos").
+**Opción A — Fusionar en el Home.** Traer una versión resumida de Ubicación (mapa + horario + "Cómo llegar") y una vista previa de 2-3 artículos del Blog dentro del scroll del Home, antes del Footer, tal como lo describe el plan literalmente.
 
-**Opción B — Mantener como vistas separadas, pero con accesos más visibles.** Dejar Contacto y Blog como están (vistas propias), y en su lugar reforzar los CTA "Cómo llegar" y "Ver blog" dentro del CTA banner del Home, sin duplicar contenido. Menos trabajo, menos riesgo de romper algo que ya funciona (SEO de esas páginas, por ejemplo — aunque son vistas JS, no URLs distintas, así que no hay impacto de indexación real en ningún caso).
+**Opción B — Mantener como vistas separadas, pero con accesos más visibles.** Dejar Contacto y Blog como están (vistas propias), reforzando los CTA "Cómo llegar" y "Ver blog" desde el Home sin duplicar contenido completo.
 
-Mi recomendación: **Opción B** para el mapa/ubicación (agregar el mapa embebido y "Cómo llegar" directamente en la vista Contacto, que ya visita quien busca esa información) y **Opción A ligera** solo para el Blog (2-3 tarjetas de preview antes del footer del Home, enlazando a la vista Blog completa) — es el balance más cercano a la intención del plan sin reescribir la navegación del sitio.
+**Decisión del usuario: Opción B.** Implementada así:
+- **Ubicación**: se queda en la vista Contacto (ya tiene mapa embebido + "Cómo llegar", agregados en la sesión de esta misma fecha). El CTA banner del Home enlaza directamente ahí.
+- **Blog**: Opción A ligera aplicada solo aquí (con acuerdo implícito al confirmar Opción B para el conjunto) — se agregó `#blog-preview-sec` en el Home con los 3 artículos más recientes (`renderBlogPreview()`) y un botón "Ver todos los artículos" hacia la vista Blog completa. No se fusionó el listado completo ni se tocó la navegación del menú.
 
-## 6. Siguiente paso
+## 6. Estado de los cambios de bajo riesgo
 
-Con esta auditoría lista, la Fase 3 (reorganización estructural) puede empezar en cuanto se resuelva la decisión de la sección 5. Mientras tanto, hay cambios de bajo riesgo que no dependen de esa decisión y se pueden hacer ya:
-- Sacar el formulario de reseñas del scroll principal (dejar solo los testimonios en `reviews-sec`; mover el formulario a un modal o acción secundaria "¿Ya eres cliente? Cuéntanos tu experiencia").
-- Agregar mapa embebido + "Cómo llegar" en la vista Contacto.
-- Diferenciar "Agendar cita" como acción propia en el CTA banner (hoy solo hay Llamar/WhatsApp).
+- [x] Sacar el formulario de reseñas del scroll principal → modal `#reviewModal`.
+- [x] Agregar mapa embebido + "Cómo llegar" en la vista Contacto.
+- [x] Diferenciar "Agendar cita" como acción propia en el CTA banner.
+- [x] Vista previa del Blog en el Home (3 artículos + CTA a la vista completa).
+
+## 7. Siguiente paso
+
+Con la decisión de arquitectura resuelta y el Home ya reflejando Ubicación (vía Contacto) y Blog (preview), lo que sigue del plan es:
+- Fase 4: crear la sección "¿Qué le pasa a tu vehículo?" (no existe aún).
+- Mejorar tarjetas de servicios y sus acciones ("Ver servicio"/"Agendar" cuando haya contenido real).
+- Revisar convivencia OSCAR/WhatsApp y ajustar (o no) los chips de OSCAR a los sugeridos por el plan.
+- Fase 5 (refinamiento visual) y Fase 6 (QA final, incluyendo responsive completo, SEO y accesibilidad de todo el sitio, no solo de los cambios ya hechos).
