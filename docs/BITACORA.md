@@ -10,9 +10,9 @@ Este archivo mantiene continuidad entre Codex, Claude Code y futuras sesiones.
 
 ## Tareas actuales
 
-- [ ] Auditar técnicamente el Home actual antes de modificarlo.
-- [ ] Mapear secciones actuales contra la nueva arquitectura UX.
-- [ ] Reorganizar el Home según `OMG_UX_REDESIGN.md`.
+- [x] Auditar técnicamente el Home actual antes de modificarlo. Ver `docs/AUDITORIA_HOME.md`.
+- [x] Mapear secciones actuales contra la nueva arquitectura UX. Ver `docs/AUDITORIA_HOME.md` §3.
+- [!] Reorganizar el Home según `OMG_UX_REDESIGN.md`. Bloqueado: falta que el usuario decida entre Opción A/B de `docs/AUDITORIA_HOME.md` §5 (Ubicación/Blog: ¿fusionar en el Home o mantener como vistas separadas con mejor acceso?).
 - [ ] Mejorar tarjetas de servicios y sus acciones.
 - [ ] Crear la sección “¿Qué le pasa a tu vehículo?”.
 - [ ] Integrar esa orientación con servicios, WhatsApp y OSCAR cuando aplique.
@@ -97,6 +97,36 @@ Paquete de coordinación activo en la raíz del repo. El rediseño UX de `docs/O
 
 Pendientes:
 Ver "Tareas actuales" arriba. La carpeta `OMG_SERVITECA_AGENT_DOCS/` se dejó intacta como referencia; su contenido ya vive en las rutas finales.
+
+Commit:
+Ver commit de esta sesión en `git log`.
+
+---
+
+### 2026-09-22, resolución de licencias + Fase 1 y 2 del rediseño (auditoría técnica y mapeo)
+Agente: Claude Code
+
+Tarea:
+Cerrar la auditoría de licencias de imágenes con la aclaración del cliente, y ejecutar las Fases 1 y 2 de `OMG_UX_REDESIGN.md` (auditoría técnica del Home actual + mapeo contra el recorrido propuesto).
+
+Cambios:
+- `IMAGENES-Y-LICENCIAS.md`: cerrado. Las imágenes son generadas con IA a partir de tomas reales del negocio; OMG Serviteca es titular, no aplica licencia de terceros.
+- Nuevo `docs/AUDITORIA_HOME.md`: mapea la estructura real del `index.html` (arquitectura de "vistas" por JS, no framework) contra el recorrido de `OMG_UX_REDESIGN.md`, con hallazgos concretos (formulario de reseñas embebido en medio de testimonios, sin mapa embebido en ningún lado, Ubicación y Blog viven en vistas separadas del Home no en el scroll principal, sin acción "Agendar cita" propia, OSCAR ya tiene chips rápidos existentes).
+
+Archivos:
+- `IMAGENES-Y-LICENCIAS.md`
+- `docs/BITACORA.md`
+- `docs/AUDITORIA_HOME.md` (nuevo)
+
+Pruebas:
+- Lectura completa de `index.html` (secciones, vistas, nav, OSCAR, formularios) para verificar cada hallazgo contra el código real, no contra supuestos del plan.
+
+Resultado:
+Fases 1 y 2 completas. La Fase 3 (reorganización estructural) queda **bloqueada** hasta que el usuario elija entre las opciones A/B descritas en `docs/AUDITORIA_HOME.md` §5 sobre cómo integrar Ubicación y Blog al recorrido del Home.
+
+Pendientes:
+- Decisión de arquitectura (§5 del audit) antes de tocar la estructura del Home.
+- Mientras tanto, hay 3 cambios de bajo riesgo que no dependen de esa decisión y pueden hacerse ya (listados al final de `docs/AUDITORIA_HOME.md` §6): sacar el formulario de reseñas del scroll principal, agregar mapa embebido en Contacto, diferenciar "Agendar cita" como acción propia en el CTA banner.
 
 Commit:
 Ver commit de esta sesión en `git log`.
