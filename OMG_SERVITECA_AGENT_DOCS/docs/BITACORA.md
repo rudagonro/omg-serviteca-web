@@ -16,11 +16,11 @@ Este archivo mantiene continuidad entre Codex, Claude Code y futuras sesiones.
 - [ ] Mejorar tarjetas de servicios y sus acciones.
 - [ ] Crear la sección “¿Qué le pasa a tu vehículo?”.
 - [ ] Integrar esa orientación con servicios, WhatsApp y OSCAR cuando aplique.
-- [ ] Reubicar “Deja tu opinión” fuera del recorrido comercial principal.
-- [ ] Revisar jerarquía de CTA de agendamiento.
+- [x] Reubicar “Deja tu opinión” fuera del recorrido comercial principal. Ahora vive en un modal (`#reviewModal`), disparado por un botón secundario en `reviews-sec` ("¿Ya eres cliente de OMG?..."). `reviews-sec` solo muestra testimonios.
+- [x] Revisar jerarquía de CTA de agendamiento. Se agregó "📅 Agendar Cita" (`.cta-ban-primary`, `btn-g`) como acción principal en el banner CTA, distinta de Llamar/WhatsApp/Cómo llegar (secundarias).
 - [ ] Revisar convivencia entre OSCAR y WhatsApp.
-- [ ] Revisar ubicación, horarios, mapa y CTA “Cómo llegar”.
-- [ ] Revisar responsive en móvil, tablet y escritorio.
+- [x] Revisar ubicación, horarios, mapa y CTA “Cómo llegar”. Se agregó mapa embebido (Google Maps `output=embed`, sin API key, con filtro dark-mode) y botón "Cómo llegar" (link de direcciones) en la vista Contacto y en el banner CTA del Home.
+- [x] Revisar responsive en móvil, tablet y escritorio (para los 3 cambios de esta sesión). Verificado en 375px: sin overflow horizontal en modal, banner CTA ni mapa. Pendiente revisar el resto del sitio cuando se aborde la Fase 3 completa.
 - [ ] Revisar SEO, accesibilidad y rendimiento.
 - [ ] Ejecutar QA final.
 - [ ] Registrar build, pruebas, commit y estado final.
@@ -127,6 +127,39 @@ Fases 1 y 2 completas. La Fase 3 (reorganización estructural) queda **bloqueada
 Pendientes:
 - Decisión de arquitectura (§5 del audit) antes de tocar la estructura del Home.
 - Mientras tanto, hay 3 cambios de bajo riesgo que no dependen de esa decisión y pueden hacerse ya (listados al final de `docs/AUDITORIA_HOME.md` §6): sacar el formulario de reseñas del scroll principal, agregar mapa embebido en Contacto, diferenciar "Agendar cita" como acción propia en el CTA banner.
+
+Commit:
+Ver commit de esta sesión en `git log`.
+
+---
+
+### 2026-09-22, Fase 3 (parcial): cambios de bajo riesgo del Home
+Agente: Claude Code
+
+Tarea:
+Implementar los 3 cambios de `docs/AUDITORIA_HOME.md` §6 que no dependen de la decisión de arquitectura (Ubicación/Blog), mientras esa decisión sigue pendiente del usuario.
+
+Cambios:
+- Formulario "Deja tu Opinión" sacado del scroll principal: ahora vive en un modal (`#reviewModal`, funciones `openReviewModal()`/`closeReviewModal()`), disparado por un botón secundario en `reviews-sec`. La sección de testimonios ya no compite visualmente con un formulario siempre visible.
+- "Agendar Cita" agregado como acción propia y de mayor jerarquía en el banner CTA del Home (`.cta-ban-primary`), separada de Llamar/WhatsApp/Cómo llegar.
+- Mapa embebido (Google Maps `output=embed`, sin API key, con filtro dark-mode a tono con la marca) + botón "Cómo llegar" (enlace de direcciones) agregados en la vista Contacto y en el banner CTA del Home.
+
+Archivos:
+- `index.html`
+
+Pruebas:
+- Servidor estático local, verificado en navegador: modal abre/cierra, estrellas y envío por WhatsApp siguen funcionando, `navGo('contact')` desde "Agendar Cita" funciona, mapa carga (confirmado visualmente, con tema oscuro), enlaces "Cómo llegar" apuntan a Google Maps Directions con la dirección oficial.
+- Sin errores de consola.
+- Responsive en 375px: sin scroll horizontal en modal, banner CTA ni mapa/Contacto.
+- Nota para el próximo agente: la vista previa de este entorno tiene un bug conocido — a veces muestra pantallas en negro o capturas desactualizadas con contenido embebido/lazy (mapas, imágenes), aunque el contenido real carga bien. Verificar con lectura de `window.scrollY`, `getBoundingClientRect()` o consola antes de asumir que algo está roto.
+
+Resultado:
+3 de 3 cambios de bajo riesgo completados y probados. La Fase 3 completa (reorganización estructural: Ubicación/Blog dentro del Home, nueva sección "¿Qué le pasa a tu vehículo?", tarjetas de servicio, OSCAR) sigue bloqueada/pendiente.
+
+Pendientes:
+- Decisión de arquitectura (`docs/AUDITORIA_HOME.md` §5) para continuar con Ubicación/Blog.
+- Fase 4 (nueva sección "¿Qué le pasa a tu vehículo?"), Fase 5 (refinamiento visual), Fase 6 (QA final) siguen sin empezar.
+- Revisar convivencia OSCAR/WhatsApp y accesibilidad/SEO del sitio completo (no solo de los 3 cambios de esta sesión).
 
 Commit:
 Ver commit de esta sesión en `git log`.

@@ -154,6 +154,16 @@ body{background:var(--black);color:var(--white);font-family:var(--fn-b);overflow
 .lightbox-close{position:fixed;top:1.2rem;right:1.2rem;background:rgba(245,197,24,.9);
   color:#000;border:none;border-radius:50%;width:40px;height:40px;font-size:1.1rem;
   cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;}
+/* Review modal (formulario "Deja tu Opinión" fuera del recorrido principal) */
+.review-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;
+  display:none;align-items:flex-start;justify-content:center;padding:2.5rem 1.2rem;overflow-y:auto;}
+.review-modal.open{display:flex;}
+.review-modal-box{position:relative;max-width:640px;width:100%;}
+.review-modal-box .rev-form-wrap{margin-top:0}
+.review-modal-close{position:absolute;top:-14px;right:-14px;background:var(--gold);
+  color:#000;border:none;border-radius:50%;width:36px;height:36px;font-size:1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;}
+.rev-cta-secondary{text-align:center;margin-top:2.2rem;}
 .svc-body{padding:1.2rem 1.4rem}
 .svc-name{font-family:var(--fn-b);font-weight:700;font-size:1rem;
   letter-spacing:.5px;color:var(--white);margin-bottom:.2rem;line-height:1.2;}
@@ -319,6 +329,9 @@ body{background:var(--black);color:var(--white);font-family:var(--fn-b);overflow
 /* CONTACT VIEW */
 #view-contact{padding-top:68px}
 .ct-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
+.ct-map-wrap{margin-top:1.6rem}
+.ct-map{display:block;width:100%;border-radius:var(--r);filter:grayscale(.2) invert(.92) contrast(.9);}
+.ct-map-cta{width:100%;justify-content:center;margin-top:1rem}
 @media(max-width:900px){.ct-grid{grid-template-columns:1fr}}
 .ct-info-item{display:flex;align-items:flex-start;gap:.9rem;
   background:var(--black3);border:1px solid rgba(245,197,24,.1);
@@ -356,6 +369,8 @@ body{background:var(--black);color:var(--white);font-family:var(--fn-b);overflow
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
 .cta-ban-txt h2{font-family:var(--fn-d);font-size:1.8rem;color:var(--white);letter-spacing:1px}
 .cta-ban-txt p{font-family:var(--fn-t);font-size:.85rem;color:var(--gray);margin-top:.2rem;font-weight:300}
+.cta-ban-main{display:flex}
+.cta-ban-primary{font-size:1rem;padding:1rem 1.8rem;white-space:nowrap}
 .cta-ban-acts{display:flex;gap:.9rem;flex-wrap:wrap}
 .cta-lnk{display:flex;align-items:center;gap:.7rem;text-decoration:none;
   background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.3);
@@ -599,32 +614,9 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
         
       </div>
       <div class="rev-grid" id="revGrid"></div>
-      <!-- Formulario de reseña -->
-      <div class="rev-form-wrap" id="revFormWrap">
-        <div class="rev-form-ttl">✍ Deja tu Opinión</div>
-        <div id="revStarsSelect" class="rev-stars-select">
-          <button class="rev-star-btn" data-val="1" onclick="selectStar(1)">★</button>
-          <button class="rev-star-btn" data-val="2" onclick="selectStar(2)">★</button>
-          <button class="rev-star-btn" data-val="3" onclick="selectStar(3)">★</button>
-          <button class="rev-star-btn" data-val="4" onclick="selectStar(4)">★</button>
-          <button class="rev-star-btn active" data-val="5" onclick="selectStar(5)">★</button>
-        </div>
-        <div class="rev-form-row">
-          <div class="fg"><label class="fl">Tu Nombre</label><input type="text" class="fi" id="revNombre" placeholder="Nombre"></div>
-          <div class="fg"><label class="fl">Vehículo</label><input type="text" class="fi" id="revVehiculo" placeholder="Ej: Toyota Hilux 2020"></div>
-        </div>
-        <div class="fg" style="margin-bottom:1rem"><label class="fl">Tu Opinión</label><textarea class="fta" id="revTexto" rows="3" placeholder="Cuéntanos tu experiencia con OMG Serviteca..."></textarea></div>
-        <label class="consent"><input type="checkbox" id="revConsent"><span>Autorizo el tratamiento de estos datos para gestionar y, previa revisión, publicar mi reseña, conforme a la <a href="/politica-privacidad" target="_blank">Política de Privacidad y Tratamiento de Datos</a>.</span></label>
-        <div class="field-error" id="revConsentError">Debes autorizar el tratamiento de los datos para enviar la opinión.</div>
-        <button class="btn-g" style="width:100%;justify-content:center" onclick="submitReview()">📤 Enviar Opinión</button>
-        <p style="font-family:var(--fn-t);font-size:.68rem;color:var(--gray);text-align:center;margin-top:.8rem;font-style:italic;">Tu opinión será revisada antes de publicarse. Gracias por confiar en OMG Serviteca.</p>
+      <div class="rev-cta-secondary">
+        <button class="btn-o" onclick="openReviewModal()">✍ ¿Ya eres cliente de OMG? Cuéntanos tu experiencia</button>
       </div>
-      <div class="rev-submitted" id="revSubmitted">
-        <div class="rev-submitted-ic">🎉</div>
-        <p>¡Gracias por tu opinión!</p>
-        <small>La hemos recibido y será revisada antes de publicarse.</small>
-      </div>
-
     </div>
   </section>
 
@@ -663,6 +655,9 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
     <div class="cta-ban-in">
       <span style="font-size:2rem">📅</span>
       <div class="cta-ban-txt"><h2>¡AGENDA TU CITA HOY!</h2><p>Déjanos cuidar tu vehículo como se merece.</p></div>
+      <div class="cta-ban-main">
+        <button class="btn-g cta-ban-primary" onclick="navGo('contact')">📅 Agendar Cita</button>
+      </div>
       <div class="cta-ban-acts">
         <a href="tel:3176980609" class="cta-lnk">
           <span class="cta-lnk-ic">📞</span>
@@ -671,6 +666,10 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
         <a href="https://wa.me/573176980609?text=Hola%20OMG%20Serviteca,%20quiero%20agendar%20una%20cita" target="_blank" class="cta-lnk">
           <span class="cta-lnk-ic">💬</span>
           <div><div class="cta-lnk-num">317 698 0609</div><div class="cta-lnk-t">WhatsApp</div></div>
+        </a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Cra.+1+%2317-47,+Variante,+Ch%C3%ADa,+Cundinamarca" target="_blank" class="cta-lnk">
+          <span class="cta-lnk-ic">📍</span>
+          <div><div class="cta-lnk-num">Cómo llegar</div><div class="cta-lnk-t">Google Maps</div></div>
         </a>
       </div>
     </div>
@@ -766,6 +765,10 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
           <div class="ct-info-item"><span class="ct-info-ic">✉️</span><div><div class="ct-info-ttl">Correo</div><div class="ct-info-t"><a href="mailto:omgtres@hotmail.com">omgtres@hotmail.com</a></div></div></div>
           <div class="ct-info-item"><span class="ct-info-ic">💬</span><div><div class="ct-info-ttl">WhatsApp</div><div class="ct-info-t"><a href="https://wa.me/573176980609" target="_blank">Escríbenos →</a></div></div></div>
           <div class="ct-info-item"><span class="ct-info-ic">⏰</span><div><div class="ct-info-ttl">Horario</div><div class="ct-info-t">Lun–Vie: 8AM–6PM · Sáb: 8AM–2PM</div></div></div>
+          <div class="ct-map-wrap">
+            <iframe class="ct-map" src="https://www.google.com/maps?q=Cra.+1+%2317-47,+Variante,+Ch%C3%ADa,+Cundinamarca&output=embed" width="100%" height="260" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de OMG Serviteca en Chía"></iframe>
+            <a class="btn-o ct-map-cta" href="https://www.google.com/maps/dir/?api=1&destination=Cra.+1+%2317-47,+Variante,+Ch%C3%ADa,+Cundinamarca" target="_blank">📍 Cómo llegar</a>
+          </div>
         </div>
         <div class="ct-form">
           <div class="ct-form-ttl">📅 Solicita Tu Turno</div>
@@ -813,6 +816,37 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img class="lightbox-img" id="lbImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<!-- MODAL: Deja tu opinión -->
+<div class="review-modal" id="reviewModal" onclick="closeReviewModal(event)">
+  <div class="review-modal-box" onclick="event.stopPropagation()">
+    <button class="review-modal-close" onclick="closeReviewModal()">✕</button>
+    <div class="rev-form-wrap" id="revFormWrap">
+      <div class="rev-form-ttl">✍ Deja tu Opinión</div>
+      <div id="revStarsSelect" class="rev-stars-select">
+        <button class="rev-star-btn" data-val="1" onclick="selectStar(1)">★</button>
+        <button class="rev-star-btn" data-val="2" onclick="selectStar(2)">★</button>
+        <button class="rev-star-btn" data-val="3" onclick="selectStar(3)">★</button>
+        <button class="rev-star-btn" data-val="4" onclick="selectStar(4)">★</button>
+        <button class="rev-star-btn active" data-val="5" onclick="selectStar(5)">★</button>
+      </div>
+      <div class="rev-form-row">
+        <div class="fg"><label class="fl">Tu Nombre</label><input type="text" class="fi" id="revNombre" placeholder="Nombre"></div>
+        <div class="fg"><label class="fl">Vehículo</label><input type="text" class="fi" id="revVehiculo" placeholder="Ej: Toyota Hilux 2020"></div>
+      </div>
+      <div class="fg" style="margin-bottom:1rem"><label class="fl">Tu Opinión</label><textarea class="fta" id="revTexto" rows="3" placeholder="Cuéntanos tu experiencia con OMG Serviteca..."></textarea></div>
+      <label class="consent"><input type="checkbox" id="revConsent"><span>Autorizo el tratamiento de estos datos para gestionar y, previa revisión, publicar mi reseña, conforme a la <a href="/politica-privacidad" target="_blank">Política de Privacidad y Tratamiento de Datos</a>.</span></label>
+      <div class="field-error" id="revConsentError">Debes autorizar el tratamiento de los datos para enviar la opinión.</div>
+      <button class="btn-g" style="width:100%;justify-content:center" onclick="submitReview()">📤 Enviar Opinión</button>
+      <p style="font-family:var(--fn-t);font-size:.68rem;color:var(--gray);text-align:center;margin-top:.8rem;font-style:italic;">Tu opinión será revisada antes de publicarse. Gracias por confiar en OMG Serviteca.</p>
+    </div>
+    <div class="rev-submitted" id="revSubmitted">
+      <div class="rev-submitted-ic">🎉</div>
+      <p>¡Gracias por tu opinión!</p>
+      <small>La hemos recibido y será revisada antes de publicarse.</small>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ OSCAR ═══ -->
@@ -1216,6 +1250,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   initAnalyticsConsent();
 });
 // ── REVIEW FORM ──
+function openReviewModal(){
+  document.getElementById('revFormWrap').style.display='';
+  document.getElementById('revSubmitted').style.display='none';
+  document.getElementById('reviewModal').classList.add('open');
+}
+function closeReviewModal(e){
+  if(e&&e.target!==e.currentTarget)return;
+  document.getElementById('reviewModal').classList.remove('open');
+}
 let selectedStars = 5;
 function selectStar(val){
   selectedStars = val;
