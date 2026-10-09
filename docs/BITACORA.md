@@ -222,3 +222,34 @@ Pendientes:
 
 Commit:
 `HASH mensaje`
+
+
+### 2026-10-09, WhatsApp Business para consultas y turnos
+Agente: Codex
+
+Tarea:
+Dirigir la atención comercial al WhatsApp Business 305 938 5669 y conservar 317 698 0609 para contacto directo con el dueño.
+
+Archivos:
+- `index.html`
+- `docs/BITACORA.md`
+
+Cambios:
+- Ocho destinos de WhatsApp actualizados: cita, contacto, botón flotante, servicios, formulario y reseñas.
+- Número y etiquetas de WhatsApp Business visibles en banner, footer y Contacto.
+- FAQ y OSCAR actualizados para turnos, horarios, cotizaciones y consultas generales.
+- Se conservan los cinco enlaces de llamada al dueño y las referencias legales. JSON-LD incluye ambos contactos.
+
+Pruebas:
+- Ocho destinos de WhatsApp y cinco enlaces de llamada comprobados.
+- JSON-LD válido, JavaScript verificado con `node --check`, `git diff --check` sin errores.
+- Ejecución de OSCAR para citas, precios, horarios y consulta general.
+- Formularios ejecutados con DOM simulado: consentimiento, codificación de datos y destino de contacto/reseñas correctos.
+- Build y lint no aplican al sitio estático sin dependencias.
+- Revisión visual pendiente: Chromium no disponible y descarga del navegador fallida en este entorno. No se modificaron CSS ni estructura.
+
+Resultado:
+Código y flujos de atención validados. Publicación automática de Cloudflare desde master pendiente de verificar tras push.
+
+Commit:
+Ver commit de esta sesión en `git log`, mensaje: `Dirigir consultas y turnos al WhatsApp Business`.
