@@ -540,7 +540,7 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
   </ul>
   <a href="tel:3176980609" class="nav-phone">
     <span>📞</span>
-    <div><span class="nav-phone-n">317 698 0609</span><span class="nav-phone-l">Contacto del dueño</span></div>
+    <div><span class="nav-phone-n">317 698 0609</span><span class="nav-phone-l">Contacto con Óscar</span></div>
   </a>
   <button class="nav-tog" id="navTog" onclick="togMob()"><span></span><span></span><span></span></button>
 </nav>
@@ -661,7 +661,7 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
       <div class="cta-ban-acts">
         <a href="tel:3176980609" class="cta-lnk">
           <span class="cta-lnk-ic">📞</span>
-          <div><div class="cta-lnk-num">317 698 0609</div><div class="cta-lnk-t">Contacto del dueño</div></div>
+          <div><div class="cta-lnk-num">317 698 0609</div><div class="cta-lnk-t">Contacto con Óscar</div></div>
         </a>
         <a href="https://wa.me/573059385669?text=Hola%20OMG%20Serviteca,%20quiero%20agendar%20una%20cita" target="_blank" class="cta-lnk">
           <span class="cta-lnk-ic">💬</span>
@@ -776,7 +776,7 @@ footer{background:var(--black2);border-top:1px solid rgba(245,197,24,.15);paddin
       <div class="ct-grid">
         <div>
           <div class="ct-info-item"><span class="ct-info-ic">📍</span><div><div class="ct-info-ttl">Dirección</div><div class="ct-info-t">Cra. 1 N°17-47, Variante · Chía, Cundinamarca<br><a href="https://share.google/F5O3kxsWe6Wsn7Ghy" target="_blank">Ver en Google Maps →</a></div></div></div>
-          <div class="ct-info-item"><span class="ct-info-ic">📞</span><div><div class="ct-info-ttl">Contacto del dueño</div><div class="ct-info-t"><a href="tel:3176980609">317 698 0609</a></div></div></div>
+          <div class="ct-info-item"><span class="ct-info-ic">📞</span><div><div class="ct-info-ttl">Contacto con Óscar</div><div class="ct-info-t"><a href="tel:3176980609">317 698 0609</a></div></div></div>
           <div class="ct-info-item"><span class="ct-info-ic">✉️</span><div><div class="ct-info-ttl">Correo</div><div class="ct-info-t"><a href="mailto:omgtres@hotmail.com">omgtres@hotmail.com</a></div></div></div>
           <div class="ct-info-item"><span class="ct-info-ic">💬</span><div><div class="ct-info-ttl">WhatsApp Business</div><div class="ct-info-t"><a href="https://wa.me/573059385669?text=Hola%2C%20buenas%20tardes.%20Quisiera%20consultar%20sobre%20los%20servicios%20de%20OMG%20Serviteca.%20Mi%20consulta%20es%3A%20" target="_blank">305 938 5669 · Escríbenos →</a></div></div></div>
           <div class="ct-info-item"><span class="ct-info-ic">⏰</span><div><div class="ct-info-ttl">Horario</div><div class="ct-info-t">Lun–Vie: 8AM–6PM · Sáb: 8AM–2PM</div></div></div>
@@ -966,7 +966,7 @@ const blogData = [
 
 const faqData = [
   {q:'¿Tienen garantía?',a:'Sí, todos nuestros servicios tienen garantía. Usamos repuestos de calidad certificada. Consulta los detalles específicos según el servicio.'},
-  {q:'¿Cómo agendar una cita?',a:'Puedes solicitar tu turno por WhatsApp Business al 305 938 5669 o usando nuestro formulario en la sección Contacto. Para contactar directamente al dueño, llama al 317 698 0609.'},
+  {q:'¿Cómo agendar una cita?',a:'Puedes solicitar tu turno por WhatsApp Business al 305 938 5669 o usando nuestro formulario en la sección Contacto. Para contactar directamente con Óscar, llama al 317 698 0609.'},
   {q:'¿Trabajan con todas las marcas?',a:'Sí, atendemos carros particulares, camionetas y SUVs de todas las marcas nacionales e importadas.'},
   {q:'¿Tienen diagnóstico computarizado?',a:'Sí, contamos con equipos OBD de última generación para leer códigos de falla de la computadora del vehículo.'},
   {q:'¿Dónde están ubicados?',a:'Estamos en Cra. 1 N°17-47, Variante · Chía, Cundinamarca. Contáctanos por WhatsApp para indicaciones detalladas.'},
@@ -1192,7 +1192,7 @@ async function oscarGetResponse(input){
     if(val.kw.some(w=>inp.includes(w)))
       return{txt:val.txt,blog:val.blog,blogL:val.blogL||null};
   }
-  return{txt:'Gracias por tu consulta. Para brindarte información precisa, contáctanos directamente:\n\n💬 Consultas y turnos, WhatsApp Business: 305 938 5669\n📞 Contacto directo del dueño: 317 698 0609\n📍 Chía, Cundinamarca\n\n¿Hay algo más en lo que pueda orientarte?',blog:null,blogL:null};
+  return{txt:'Gracias por tu consulta. Para brindarte información precisa, contáctanos directamente:\n\n💬 Consultas y turnos, WhatsApp Business: 305 938 5669\n📞 Contacto con Óscar: 317 698 0609\n📍 Chía, Cundinamarca\n\n¿Hay algo más en lo que pueda orientarte?',blog:null,blogL:null};
 }
 
 // ══════════════════════════════

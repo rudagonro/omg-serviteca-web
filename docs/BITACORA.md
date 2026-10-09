@@ -268,3 +268,13 @@ Pruebas: comprobados los parámetros text y su decodificación en todos los enla
 Resultado: cambio validado en código; verificar publicación en Cloudflare tras actualizar master.
 Pendientes: comprobación del dominio tras despliegue.
 Commit: ver git log, mensaje `Añadir mensaje predeterminado de consulta en WhatsApp Business`.
+
+
+### 2026-10-09, etiqueta Contacto con Óscar
+Agente: Codex
+Tarea: sustituir Contacto del dueño por Contacto con Óscar, según instrucción del usuario.
+Archivos: index.html y docs/BITACORA.md.
+Cambios: etiqueta en cabecera, banner y Contacto; FAQ y respuesta general de OSCAR coherentes con el nombre.
+Pruebas: cuatro etiquetas Contacto con Óscar, ausencia de etiqueta anterior, git diff --check. Enlaces y mensajes de WhatsApp conservados. Build/lint no aplican al sitio estático.
+Resultado: código validado, pendiente verificar publicación tras actualizar master.
+Commit: ver git log, mensaje Actualizar etiqueta a Contacto con Óscar.
