@@ -249,7 +249,7 @@ Pruebas:
 - Revisión visual pendiente: Chromium no disponible y descarga del navegador fallida en este entorno. No se modificaron CSS ni estructura.
 
 Resultado:
-Código y flujos de atención validados. Publicación automática de Cloudflare desde master pendiente de verificar tras push.
+Código y flujos de atención validados. Commit `4aa7b3b` publicado en master mediante el conector GitHub (el push por CLI no tiene credenciales en este entorno). Cloudflare Pages reportó despliegue exitoso. Verificado el dominio omgserviteca.com: ocho destinos de WhatsApp Business y cinco enlaces de llamada al dueño correctos. Repositorio local y origin/master sincronizados.
 
 Commit:
 Ver commit de esta sesión en `git log`, mensaje: `Dirigir consultas y turnos al WhatsApp Business`.
