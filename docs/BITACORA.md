@@ -253,3 +253,18 @@ Código y flujos de atención validados. Commit `4aa7b3b` publicado en master me
 
 Commit:
 Ver commit de esta sesión en `git log`, mensaje: `Dirigir consultas y turnos al WhatsApp Business`.
+
+
+### 2026-10-09, mensaje predeterminado en WhatsApp Business
+Agente: Codex
+
+Tarea y cambios:
+- Añadir saludo y espacio para escribir la consulta en los accesos generales de WhatsApp Business: footer, Contacto y botón flotante.
+- Mensaje: "Hola, buenas tardes. Quisiera consultar sobre los servicios de OMG Serviteca. Mi consulta es: ".
+- Conservar los mensajes específicos de citas, servicios y formularios. El visitante edita el borrador antes de enviarlo.
+
+Archivos: `index.html`, `docs/BITACORA.md`.
+Pruebas: comprobados los parámetros text y su decodificación en todos los enlaces, tres accesos generales con el mensaje exacto, número Business correcto, git diff --check. Build/lint no aplican al sitio estático.
+Resultado: cambio validado en código; verificar publicación en Cloudflare tras actualizar master.
+Pendientes: comprobación del dominio tras despliegue.
+Commit: ver git log, mensaje `Añadir mensaje predeterminado de consulta en WhatsApp Business`.
